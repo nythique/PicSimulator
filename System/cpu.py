@@ -15,7 +15,7 @@ class MAIN:
    
     def load_program(self, program): 
         """charge un programme en memoire en reservant les 64 premieres cases pour les instructions"""
-        if len(program) > len(self.memoryProgram):
+        if len(program) > 64:
             raise ValueError("Error(19): La tailles du program est superieure à l'espaces réservé (64 Octets).")
         self.memoryProgram[:len(program)] = program # Chargement du program dans la memoire de program.
         self.cp = 0 # Reinitialiser le compteur de programme (Mise à zero).
@@ -99,7 +99,7 @@ class MAIN:
         with open("./System/collector/" + file1, 'w') as f:
             json.dump(self.memoryData, f)
         with open("./System/collector/" + file2, 'w') as f:
-            json.dump(self.memoryProgram, f)
+            json.dump(self.memoryProgram[:64], f)
         with open("./System/collector/" + file3, 'w') as f:
             json.dump(self.A, f)
         with open("./System/collector/" + file4, 'w') as f:
